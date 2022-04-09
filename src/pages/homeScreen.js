@@ -3,6 +3,7 @@ import Header from '../components/header'
 import LoginComponent from '../components/loginComponent'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
+import StaticBody from '../components/staticbody';
 
 
 const HomePage = (props) => {
@@ -36,6 +37,7 @@ const HomePage = (props) => {
         <div>
             <Header />
             <LoginComponent onPress={successfullNavigation} />
+            <StaticBody />
             <h1>Home page</h1>
         </div>
     )
