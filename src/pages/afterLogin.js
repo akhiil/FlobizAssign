@@ -38,7 +38,20 @@ const App = (props) => {
 
     const addEachItem = ({ itemName, itemCode, salesPrice, purchasePrice, measuringUnit, openingDate }) => {
         const tempItem = [...allItems, { itemName, itemCode, sellingPrice: salesPrice, purchasePrice, unit: measuringUnit, date: openingDate }];
+        tempItem.sort((a, b) => {
+            let fa = a.itemName.toLowerCase(),
+                fb = b.itemName.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
         setAllItems(tempItem);
+        setFilteredItems(tempItem)
         localStorage.setItem(phoneNumber.phone, JSON.stringify(tempItem));
         // console.log("button pressed", item)
     }

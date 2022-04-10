@@ -11,7 +11,7 @@ const AddItem = (props) => {
 
 
     const saveItem = () => {
-        console.log(itemName, " ", itemCode, " ", salesPrice, " ", purchasePrice, " ", measuringUnit, " ", openingDate)
+        // console.log(itemName, " ", itemCode, " ", salesPrice, " ", purchasePrice, " ", measuringUnit, " ", openingDate)
         const details = { itemName, itemCode, salesPrice, purchasePrice, measuringUnit, openingDate }
         props.addEachItem(details);
         setItemName('');
