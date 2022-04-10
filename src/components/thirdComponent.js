@@ -31,10 +31,13 @@ export default function thirdComponent() {
     }
     return (
         <div style={{ 'margin-top': '70px', }} >
-            <div style={thirddiv.mainCont} >
+            <div style={{...thirddiv.mainCont}} >
 
-                <div style={{ ...thirddiv.UpperCont, alignItems: 'center', }}>
+                <div style={{ ...thirddiv.UpperCont, alignItems: 'center' }}>
                     <div style={{ ...thirddiv.uppercontSmall, width: '40%' }}>
+
+                    <div style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+
                         <h2 style={{ color: '#db631a', padding: '5px' }}>Get in touch</h2>
 
                         <li style={{ padding: '5px', listStyle: 'none' }}>help@flobiz.in</li>
@@ -49,6 +52,7 @@ export default function thirdComponent() {
                                 <img src={message} style={{ margin: '5px' }} />
                                 <h3 style={{ color: 'blue' }}>Chat with us</h3>
                             </button>
+                        </div>
                         </div>
                     </div>
                     <div style={thirddiv.uppercontSmall}>
@@ -67,9 +71,10 @@ export default function thirdComponent() {
                             <li style={{ padding: '10px' }}>Blogs</li>
                         </ul>
                     </div>
-                    <div style={{ ...thirddiv.uppercontSmall, width: '40%' }}>
-                        <h1 style={{ color: '#db631a' }}>Follow us</h1>
-                        <div style={{ display: 'flex',justifyContent:'space-between' }}>
+                    <div style={{ ...thirddiv.uppercontSmall, width: '40%'}}>
+                        <div style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+                        <h2 style={{ color: '#db631a' }}>Follow us</h2>
+                        <div style={{ display: 'flex',width:'320px',margin:'10px',justifyContent:'space-between' ,padding:'10px' }}>
                             <img src={Facebook} />
                             <img src={Twitter} />
                             <img src={Youtube} />
@@ -77,6 +82,7 @@ export default function thirdComponent() {
                             <img src={Linkdin} />
                         </div>
                         <h4>FlowBooks is a product of Flobiz</h4>
+                        </div>
                     </div>
 
                 </div>
