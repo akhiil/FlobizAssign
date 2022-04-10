@@ -43,7 +43,6 @@ const HomePage = (props) => {
             <Header />
             <LoginComponent onPress={successfullNavigation} phone={setPhoneInput} otp={setOtpInput} />
             <StaticBody />
-            <h1>Home page</h1>
         </div>
     )
 }
