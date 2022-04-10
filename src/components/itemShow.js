@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EmptyIcon from '../assets/icn_Inventory Reports.svg'
 
 const ItemDisplay = (props) => {
@@ -25,9 +25,9 @@ const ItemDisplay = (props) => {
     )
 }
 
-export default function itemShow(props) {
+const ItemShow = (props) => {
 
-    const items = props.userItem;
+    const items = props.userFilteredItem;
 
     return (
         <div style={{ border: '1px solid black', height: '100%' }}>
@@ -36,7 +36,10 @@ export default function itemShow(props) {
             </div>
 
             <div style={{ padding: '10px', height: '100%' }}>
-                <input style={{ padding: '10px 10px', fontSize: 16, borderRadius: 5 }} placeholder='Search Items' />
+                <input
+                    onChange={(e) => props.applyFilter(e.target.value)}
+                    style={{ padding: '10px 10px', fontSize: 16, borderRadius: 5 }}
+                    placeholder='Search Items by name' />
                 <div style={{
                     display: 'flex',
                     border: '1px solid gray',
@@ -68,7 +71,7 @@ const styles = {
     textStyle: {
         fontSize: 14,
         width: '17%',
-        marginLeft:20
+        marginLeft: 20
     },
     headerText: {
         fontSize: 20,
@@ -76,3 +79,5 @@ const styles = {
         color: 'gray'
     }
 }
+
+export default ItemShow

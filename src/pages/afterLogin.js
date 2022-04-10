@@ -5,12 +5,29 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 const App = (props) => {
     const [allItems, setAllItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
 
     useEffect(() => {
+
         const savedUserData = localStorage.getItem(phoneNumber.phone);
-        if (savedUserData)
-            setAllItems(JSON.parse(savedUserData))
-        console.log(savedUserData)
+        if (savedUserData) {
+            const tempItems = JSON.parse(savedUserData)
+            tempItems.sort((a, b) => {
+                let fa = a.itemName.toLowerCase(),
+                    fb = b.itemName.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
+            setAllItems(tempItems)
+            setFilteredItems(tempItems)
+        }
+        // console.log(savedUserData)
     }, [])
 
     const location = useLocation();
@@ -26,14 +43,39 @@ const App = (props) => {
         // console.log("button pressed", item)
     }
 
+    const filterFunction = (text) => {
+        const tempFilter = []
+        allItems.filter((value) => {
+            if (value.itemName.includes(text)) {
+                tempFilter.push(value)
+            }
+        })
+        tempFilter.sort((a, b) => {
+            let fa = a.itemName.toLowerCase(),
+                fb = b.itemName.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+        setFilteredItems(tempFilter)
+    }
+
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', border: '1px solid #636363' }}>
                 <p style={styles.textStyle}>{phoneNumber.phone}</p>
-                <p onClick={() => history.push('/')} style={{...styles.textStyle, cursor:'pointer'}}>Logout</p>
+                <p onClick={() => history.push('/')} style={{ ...styles.textStyle, cursor: 'pointer' }}>Logout</p>
             </div>
             <div style={{ display: 'flex' }}>
-                <div style={{ width: '65%' }}><ItemShow userItem={allItems} /></div>
+                <div style={{ width: '65%' }}><ItemShow
+                    userFilteredItem={filteredItems}
+                    applyFilter={(text) => filterFunction(text)}
+                    userItem={allItems} /></div>
                 <div style={{ width: '35%' }}><AddItem addEachItem={(item) => addEachItem(item)} /></div>
             </div>
         </div>
