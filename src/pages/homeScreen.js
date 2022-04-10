@@ -15,6 +15,10 @@ const HomePage = (props) => {
 
     const successfullNavigation = async () => {
 
+        if (!phoneInput || !otpInput) {
+            alert('Please enter phone and otp')
+            return;
+        }
 
         await axios.post('https://niobooks.in/api/web/authenticate', {
             "mobile_number": phoneInput,
@@ -27,7 +31,8 @@ const HomePage = (props) => {
                     phone: phoneInput
                 }
                 localStorage.setItem(res.data.id, JSON.stringify(userDetail))
-                localStorage.setItem(res.data.mobile_number, "");
+                if (localStorage.getItem(!res.data.mobile_number))
+                    localStorage.setItem(res.data.mobile_number, "");
                 history.push('/loggedIn', { id: res.data.id });
             } else {
                 alert("please check mobile number and OTP")

@@ -30,7 +30,7 @@ const App = (props) => {
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', border: '1px solid #636363' }}>
                 <p style={styles.textStyle}>{phoneNumber.phone}</p>
-                <p onClick={() => history.push('/')} style={styles.textStyle}>Logout</p>
+                <p onClick={() => history.push('/')} style={{...styles.textStyle, cursor:'pointer'}}>Logout</p>
             </div>
             <div style={{ display: 'flex' }}>
                 <div style={{ width: '65%' }}><ItemShow userItem={allItems} /></div>
@@ -43,7 +43,7 @@ const App = (props) => {
 const styles = {
     textStyle: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
 }
 export default App;

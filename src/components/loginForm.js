@@ -23,7 +23,7 @@ export default function loginForm(props) {
                 onChange={(e) => props.phone(e.target.value)}
                 style={{ width: '80%', height: 30, border: '1px solid #d1d1d1', padding: '0 5px' }} placeholder='Enter your phone number' />
             </div>
-            <p style={styles.normalText}>Enter Your OTP</p>
+            <p style={styles.normalText}>Enter Your OTP ie:- 12345</p>
             <div style={{ display: 'flex', marginBottom: 10 }}>
                 <input
                 onChange={(e) => props.otp(e.target.value)}
