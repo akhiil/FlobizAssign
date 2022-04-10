@@ -17,7 +17,7 @@ const loginComponent = (props) => {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-around', backgroundColor: '#faf2ed' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-around', backgroundColor: '#faf2ed', paddingTop:50 }}>
             <div style={{ width: '45%', justifyContent:'center', display:'flex', flexDirection:'column' }}>
                 <p style={styles.headerText}>Simple GST Billing & Stock Management</p>
                 <br/>
@@ -27,7 +27,7 @@ const loginComponent = (props) => {
             </div>
 
             <div style={{ width: '30%', padding: '25px 0', marginRight: 100 }}>
-                <LoginForm onPress={props.onPress}/>
+                <LoginForm phone={props.phone} otp={props.otp} onPress={props.onPress}/>
             </div>
         </div >
     )

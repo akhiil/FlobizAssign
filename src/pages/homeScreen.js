@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/header'
 import LoginComponent from '../components/loginComponent'
 import axios from 'axios'
@@ -7,36 +7,41 @@ import StaticBody from '../components/staticbody';
 
 
 const HomePage = (props) => {
-    // useEffect(async () => {
-    //     await axios.post('https://niobooks.in/api/web/authenticate', {
-    //         "mobile_number": "8210706721",
-    //         "otp_code" : "1234"
-    //     }, 
-    //     // {
-    //     //     headers: {
-    //     //         accept: 'application/json',
-    //     //         'content-type': 'application/json',
-    //     //         client: 'web'
+    const [phoneInput, setPhoneInput] = useState('');
+    const [otpInput, setOtpInput] = useState('');
 
-    //     //     }
-    //     // }
-    //     ).then((res) => {
-    //         console.log(res.data)
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }, [])
 
     const history = useHistory();
 
-    const successfullNavigation = () => {
-        history.push('/loggedIn');
+    const successfullNavigation = async () => {
+
+
+        await axios.post('https://niobooks.in/api/web/authenticate', {
+            "mobile_number": phoneInput,
+            "otp_code": otpInput
+        },
+        ).then((res) => {
+            console.log(res.data)
+            if (res.data.token) {
+                let userDetail = {
+                    phone: phoneInput
+                }
+                localStorage.setItem(res.data.id, JSON.stringify(userDetail))
+                localStorage.setItem(res.data.mobile_number, "");
+                history.push('/loggedIn', { id: res.data.id });
+            } else {
+                alert("please check mobile number and OTP")
+            }
+        }).catch((err) => {
+            // console.log(err)
+            alert("please check mobile number and OTP")
+        })
     }
 
     return (
         <div>
             <Header />
-            <LoginComponent onPress={successfullNavigation} />
+            <LoginComponent onPress={successfullNavigation} phone={setPhoneInput} otp={setOtpInput} />
             <StaticBody />
             <h1>Home page</h1>
         </div>

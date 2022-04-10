@@ -19,11 +19,15 @@ export default function loginForm(props) {
             <p style={styles.normalText}>Enter Mobile Number</p>
             <div style={{ display: 'flex', marginBottom: 20 }}>
                 <p style={{ ...styles.normalText, backgroundColor: 'lightgray', padding: 5, borderRadius: 2 }}>+91</p>
-                <input style={{ width: '80%', height: 30, border: '1px solid #d1d1d1', padding: '0 5px' }} placeholder='Enter your phone number' />
+                <input
+                onChange={(e) => props.phone(e.target.value)}
+                style={{ width: '80%', height: 30, border: '1px solid #d1d1d1', padding: '0 5px' }} placeholder='Enter your phone number' />
             </div>
             <p style={styles.normalText}>Enter Your OTP</p>
             <div style={{ display: 'flex', marginBottom: 10 }}>
-                <input style={{ width: '86%', height: 30, border: '1px solid #d1d1d1', padding: '0 5px' }} placeholder='One Time Password' />
+                <input
+                onChange={(e) => props.otp(e.target.value)}
+                style={{ width: '86%', height: 30, border: '1px solid #d1d1d1', padding: '0 5px' }} placeholder='One Time Password' />
             </div>
             <p style={styles.normalText}>Request OTP in 00:59 seconds</p>
 

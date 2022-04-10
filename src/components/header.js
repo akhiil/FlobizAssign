@@ -17,7 +17,10 @@ const header = () => {
             paddingTop: 10,
             paddingBottom: 10,
             boxShadow: '0px 5px 5px lightgray',
-            marginBottom: 6
+            marginBottom: 6,
+            width:'100%',
+            position:'fixed',
+            backgroundColor:'#fff'
         }}>
             <div>
                 <img src={MainLogo} alt="React Logo" />
